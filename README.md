@@ -55,9 +55,9 @@ This is a GuestBook app with 3 services:
 
 |Variable|Default|Description|
 |-|-|-|
-|`SESSION\_DIR`|`/tmp/sessions`|Directory for session files|
-|`ADMIN\_USER`|`admin`|Default admin username|
-|`ADMIN\_PASS`|`admin123`|Default admin password|
+|`SESSION_DIR`|`/tmp/sessions`|Directory for session files|
+|`ADMIN_USER`|`admin`|Default admin username|
+|`ADMIN_PASS`|`admin123`|Default admin password|
 |`PORT`|`8081`|Listen port|
 
 **Booking Service:**
@@ -309,7 +309,7 @@ kubectl top pods -n guestbook
 ### Bonus Challenges
 
 * \[ ] Create a `ConfigMap` for environment variables instead of hardcoding in Deployment
-* \[ ] Create a `Secret` for the admin credentials (`ADMIN\_USER`, `ADMIN\_PASS`)
+* \[ ] Create a `Secret` for the admin credentials (`ADMIN_USER`, `ADMIN_PASS`)
 * \[ ] Add a `NetworkPolicy` that restricts traffic:
 
   * Frontend → auth-service and booking-service only
