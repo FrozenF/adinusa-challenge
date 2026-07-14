@@ -9,13 +9,13 @@
 This is a GuestBook app with 3 services:
 
 ```
-┌─────────────────┐      ┌────────────────────┐      ┌────────────────────┐
-│   Frontend      │      │   Auth Service      │      │  Booking Service   │
+┌─────────────────┐       ┌────────────────────┐      ┌────────────────────┐
+│   Frontend      │       │   Auth Service      │      │  Booking Service   │
 │   (Vue + Nginx) │─────▶│   (Go - port 8081)  │      │  (Go - port 8082)  │
 │   port 80       │─────▶│                     │◀─────│                    │
-│                 │      │   File Sessions     │      │   SQLite Database  │
-└─────────────────┘      │   /tmp/sessions/    │      │   /data/guestbook  │
-                         └────────────────────┘      └────────────────────┘
+│                 │       │   File Sessions     │      │   SQLite Database  │
+└─────────────────┘       │   /tmp/sessions/    │      │   /data/guestbook  │
+                          └────────────────────┘      └────────────────────┘
 ```
 
 |Service|Role|Port|Storage|
