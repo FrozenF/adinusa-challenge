@@ -9,13 +9,13 @@
 This is a GuestBook app with 3 services:
 
 ```
-┌─────────────────┐       ┌────────────────────┐      ┌────────────────────┐
-│   Frontend      │       │   Auth Service      │      │  Booking Service   │
-│   (Vue + Nginx) │─────▶│   (Go - port 8081)  │      │  (Go - port 8082)  │
-│   port 80       │─────▶│                     │◀─────│                    │
-│                 │       │   File Sessions     │      │   SQLite Database  │
-└─────────────────┘       │   /tmp/sessions/    │      │   /data/guestbook  │
-                          └────────────────────┘      └────────────────────┘
+┌─────────────────┐        ┌────────────────────┐      ┌────────────────────┐
+│   Frontend      │        │   Auth Service     │      │  Booking Service   │
+│   (Vue + Nginx) │ ─────> │   (Go - port 8081) │      │  (Go - port 8082)  │
+│   port 80       │ ─────> │                    │<─────│                    │
+│                 │        │   File Sessions    │      │   SQLite Database  │
+└─────────────────┘        │   /tmp/sessions/   │      │   /data/guestbook  │
+                           └────────────────────┘      └────────────────────┘
 ```
 
 |Service|Role|Port|Storage|
@@ -64,16 +64,16 @@ This is a GuestBook app with 3 services:
 
 |Variable|Default|Description|
 |-|-|-|
-|`DB\_PATH`|`/data/guestbook.db`|SQLite database file path|
-|`AUTH\_SERVICE\_URL`|`http://auth-service:8081`|Auth service internal URL|
+|`DB_PATH`|`/data/guestbook.db`|SQLite database file path|
+|`AUTH_SERVICE_URL`|`http://auth-service:8081`|Auth service internal URL|
 |`PORT`|`8082`|Listen port|
 
 ### Nginx Proxy Rules (frontend)
 
 The `nginx.conf` in the frontend routes:
 
-* `/api/auth/\*` → `http://auth-service:8081`
-* `/api/guestbook\*` → `http://booking-service:8082`
+* `/api/auth/*` → `http://auth-service:8081`
+* `/api/guestbook/*` → `http://booking-service:8082`
 
 These service names must match your Kubernetes Service names.
 
@@ -160,7 +160,7 @@ Create all manifests yourself. Every YAML file must be written by you from scrat
 
     * \[ ] Correct container image from your registry
     * \[ ] Container port `8081`
-    * \[ ] Environment variable `SESSION\_DIR` = `/tmp/sessions`
+    * \[ ] Environment variable `SESSION_DIR` = `/tmp/sessions`
     * \[ ] Resource **requests**: CPU `50m`, Memory `64Mi`
     * \[ ] Resource **limits**: CPU `200m`, Memory `128Mi`
     * \[ ] **Liveness probe** on `/healthz` port `8081`
